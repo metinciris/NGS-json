@@ -1,73 +1,33 @@
 # NGS-json
-NGS json dosyaları Kalite Değerlendirme Aracı
 
-Bu proje, **NGS (Next-Generation Sequencing) verileri** için temel kalite metriklerini hızlı ve okunabilir şekilde raporlamaya yarayan bir Python aracıdır. JSON formatında gelen verileri analiz ederek **%Q30, %Q40, Ortalama Kalite Skoru, Hata Oranı ve Okuma Sayısı** gibi kritik bilgileri içerir.
+NGS (Next Generation Sequencing) JSON dosyaları için Kalite Değerlendirme Aracı
 
-## 🚀 Özellikler
-- JSON formatındaki **NGS kalite verilerini hızlı bir şekilde işler**.
-- **Her veri için kalite değerlendirmesi yapar** ve uygun bir **emoji kodlaması** ile sunar.
-- **WhatsApp için optimize edilmiş çıktı formatı** üretir.
-- **Windows 10-11 üzerinde çalışır** ve doğrudan kopyalanarak Web WhatsApp üzerinden paylaşılabilir.
-- **Kapsamlı ve anlaşılır sonuçlar sağlar.**
+## Açıklama
 
-## 📂 Girdi Dosyaları
-Bu araç, **NGS okuma kalite metriklerini içeren JSON dosyalarını** işler. Örnek bir JSON formatı şu şekildedir:
+Bu araç, NGS verilerinin kalite değerlendirmesini yapmak için JSON dosyalarını analiz eder ve sonuçları kullanıcı dostu bir formatta sunar. Tkinter arayüzü kullanılarak sonuçlar görselleştirilir ve WhatsApp uyumlu bir rapor oluşturulur.
 
-```json
-{
-    "SampleName": "Dummy-Sample",
-    "Occurrences": [
-        {
-            "PercentQ30": 96.5,
-            "PercentQ40": 89.4,
-            "QualityScoreMean": 42.8,
-            "PercentMismatch": 4.2
-        }
-    ],
-    "NumPolonies": 15230000
-}
-```
+## Özellikler
 
-## 📜 Çıktı Formatı
-Aracın ürettiği WhatsApp uyumlu çıktı formatı örneği:
+- JSON dosyalarından kalite verilerini okuma
+- Kalite metriklerini hesaplama (Q30, Q40, GC içeriği, vb.)
+- Tkinter ile kullanıcı dostu arayüz
+- WhatsApp uyumlu rapor oluşturma
+- Farklı NGS panel türleri için beklenen değerler
 
-```
-📊 **Genel Kalite Değerlendirme**
+## Kullanım
 
-🥈 *VAKA44 (MP44_stats)*
-   🥈 %Q30: 97.57
-   🥈 %Q40: 92.19
-   🥈 Ortalama Kalite Skoru: 43.28
-   🥈 Hata Oranı: 5.4
-   🥈 Okuma Sayısı (Milyon): 18.94M
-   🥈 Puan: 78.8/100
+1. Gerekli kütüphaneleri yükleyin: `pip install pandas numpy tkinter`
+2. `json.py` dosyasını çalıştırın: `python json.py`
+3. Açılan pencereden analiz etmek istediğiniz JSON dosyalarını seçin
+4. Sonuçları görüntüleyin ve kopyalayın
 
-🥇 *VAKA48 (MP48_stats)*
-   🥇 %Q30: 97.27
-   🥇 %Q40: 91.42
-   🥇 Ortalama Kalite Skoru: 43.16
-   🥇 Hata Oranı: 4.44
-   🥇 Okuma Sayısı (Milyon): 15.53M
-   🥇 Puan: 81.48/100
-```
+## Gereksinimler
 
-## 📥 Kurulum & Kullanım
+- Python 3.6+
+- pandas
+- numpy
+- tkinter
 
-1. **Python 3.x sürümünü yükleyin.**
-2. Gerekli kütüphaneleri yükleyin:
-   ```sh
-   pip install pandas tkinter
-   ```
-3. **Python betiğini çalıştırın** ve JSON dosyalarını seçin:
-   ```sh
-   python ngs_quality_analysis.py
-   ```
-4. Çıktıyı kopyalayarak Web WhatsApp üzerinde paylaşabilirsiniz.
+## Lisans
 
-## 📌 Gelecek Güncellemeler
-✅ **Hematoonkolojik Panel ve Genel Füzyon Paneli desteği** eklenecek.  
-✅ **Variant Allele Frequency (VAF) ve CNV analizleri** için ek değerlendirmeler yapılacak.  
-
-## 📄 Lisans
-Bu proje **MIT Lisansı** ile sunulmaktadır. Herkesin kullanımına açıktır. 🎯
-
+Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
