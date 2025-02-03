@@ -1,6 +1,7 @@
 # NGS-json
 
-NGS (Next Generation Sequencing) JSON dosyaları için Kalite Değerlendirme Aracı
+NGS (Next Generation Sequencing) JSON dosyaları için Kalite Değerlendirme Aracı. Örnek değerlendirmedir. Gerçek değerlendirme olarak kullanılamaz. Laboratuvar sorumlusuna danışın.
+
 
 ## Açıklama
 
@@ -21,11 +22,9 @@ Bu araç, NGS verilerinin kalite değerlendirmesini yapmak için JSON dosyaları
 3. Açılan pencereden analiz etmek istediğiniz JSON dosyalarını seçin
 4. Sonuçları görüntüleyin ve kopyalayın
 
+## Örnek Çıktı
 
-## Kullanım
-
-İşte örnek hastalar üzerinden oluşturulmuş renkli ve görsel bir kalite değerlendirme raporu:
-
+```
 📊 *Genel Kalite Değerlendirme*
 
 🟢 *Hasta-A (FFPE-001)*
@@ -82,7 +81,7 @@ Bu araç, NGS verilerinin kalite değerlendirmesini yapmak için JSON dosyaları
      -  Akciğer Kanseri Paneli: 120-180 baz çifti
      -  Hematoonkolojik Panel: 150-250 baz çifti
      -  Genel Füzyon Paneli: 100-300 baz çifti
-
+```
 
 ## Gereksinimler
 
@@ -94,3 +93,6 @@ Bu araç, NGS verilerinin kalite değerlendirmesini yapmak için JSON dosyaları
 ## Lisans
 
 Bu proje MIT lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
+---
+Answer from Perplexity: pplx.ai/share
