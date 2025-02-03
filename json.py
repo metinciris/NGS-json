@@ -87,7 +87,7 @@ def load_json_data(json_files):
 
             gc_content = calculate_gc_content(json_data["Occurrences"][0]["Reads"][0]["PerReadGCCountHistogram"])
             mean_read_length = round(json_data["Occurrences"][0]["Reads"][0]["MeanReadLength"], 2)
-            total_bases = round(total_reads * mean_read_length, 2)
+            total_bases = round(total_reads * mean_read_length / 1000, 2)
 
             total_score = calculate_weighted_quality_score(q30, mismatch, quality_score, total_reads)
             quality_label = get_quality_label(total_score)
