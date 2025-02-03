@@ -34,7 +34,6 @@ Bu araç, NGS verilerinin kalite değerlendirmesini yapmak için JSON dosyaları
 🟢 Hata Oranı: 2.14
 🟢 Okuma Sayısı (Milyon): 35.62
 🧬 Guanin-Sitozin İçeriği: Normal (52.18%)
-🔬 Adaptör Yüzdesi: 0.82%
 📏 Ortalama Okuma Uzunluğu: 151.0 baz çifti
 🔢 Toplam Baz Sayısı: 5.38 milyar
 📊 Puan: 97.45/100 🟢
@@ -46,7 +45,6 @@ Bu araç, NGS verilerinin kalite değerlendirmesini yapmak için JSON dosyaları
 🟡 Hata Oranı: 5.87
 🟡 Okuma Sayısı (Milyon): 22.45
 🧬 Guanin-Sitozin İçeriği: Yüksek (68.73%)
-🔬 Adaptör Yüzdesi: 1.24%
 📏 Ortalama Okuma Uzunluğu: 150.8 baz çifti
 🔢 Toplam Baz Sayısı: 3.39 milyar
 📊 Puan: 84.62/100 🟡
@@ -58,7 +56,6 @@ Bu araç, NGS verilerinin kalite değerlendirmesini yapmak için JSON dosyaları
 🔴 Hata Oranı: 8.92
 🔴 Okuma Sayısı (Milyon): 11.87
 🧬 Guanin-Sitozin İçeriği: Yüksek (71.45%)
-🔬 Adaptör Yüzdesi: 3.56%
 📏 Ortalama Okuma Uzunluğu: 149.5 baz çifti
 🔢 Toplam Baz Sayısı: 1.77 milyar
 📊 Puan: 68.31/100 🔴
