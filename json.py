@@ -65,15 +65,9 @@ def calculate_weighted_quality_score(q30, mismatch, quality_score, total_reads,
     return round(total_score, 2)
 
 def calculate_gc_content(gc_histogram):
+    total_bases = sum(count * gc for gc, count in enumerate(gc_histogram))
     total_reads = sum(gc_histogram)
-    gc_percentages = [i for i in range(len(gc_histogram))]
-    average_gc = sum(p * c for p, c in zip(gc_percentages, gc_histogram)) / total_reads
-    return round(average_gc, 2)
-
-def calculate_adapter_percentage(adapter_histogram):
-    total_reads = sum(adapter_histogram)
-    reads_with_adapters = total_reads - adapter_histogram[0]
-    return round((reads_with_adapters / total_reads) * 100, 2)
+    return round((total_bases / (total_reads * 151)) * 100, 2) if total_reads > 0 else 0
 
 def load_json_data(json_files):
     data = []
@@ -92,20 +86,19 @@ def load_json_data(json_files):
             total_reads = round(json_data.get("NumPolonies", 0) / 1_000_000, 2)
 
             gc_content = calculate_gc_content(json_data["Occurrences"][0]["Reads"][0]["PerReadGCCountHistogram"])
-            adapter_percentage = calculate_adapter_percentage(json_data["Occurrences"][0]["Reads"][0]["RemovedAdapterLengthHistogram"])
             mean_read_length = round(json_data["Occurrences"][0]["Reads"][0]["MeanReadLength"], 2)
             total_bases = round(total_reads * mean_read_length, 2)
 
             total_score = calculate_weighted_quality_score(q30, mismatch, quality_score, total_reads)
             quality_label = get_quality_label(total_score)
 
-            data.append([sample_name, file_name, q30, q40, quality_score, mismatch, total_reads, gc_content, adapter_percentage, mean_read_length, total_bases, total_score, quality_label])
+            data.append([sample_name, file_name, q30, q40, quality_score, mismatch, total_reads, gc_content, mean_read_length, total_bases, total_score, quality_label])
         
         except Exception:
-            data.append([json_path, "Dosya Hatası", "", "", "", "", "", "", "", "", "", None, "❌"])
+            data.append([json_path, "Dosya Hatası", "", "", "", "", "", "", "", "", None, "❌"])
 
     df = pd.DataFrame(data, columns=["Sample", "File Name", "%Q30", "%Q40", "Quality Score Mean", "Mismatch %",
-                                     "Total Reads (M)", "GC Content %", "Adapter %", "Mean Read Length", "Total Bases (G)", "Total Score", "Kalite Değerlendirmesi"])
+                                     "Total Reads (M)", "GC Content %", "Mean Read Length", "Total Bases (G)", "Total Score", "Kalite Değerlendirmesi"])
     return df
 
 def display_results(report):
@@ -133,7 +126,6 @@ def generate_whatsapp_report(df):
         report += f"{get_quality_label(row['Mismatch %'], high_best=False)} Hata Oranı: {row['Mismatch %']}\n"
         report += f"{get_quality_label(row['Total Reads (M)'])} Okuma Sayısı (Milyon): {row['Total Reads (M)']}\n"
         report += f"🧬 Guanin-Sitozin İçeriği: {'Yüksek' if row['GC Content %'] > 60 else 'Normal'} ({row['GC Content %']}%)\n"
-        report += f"🔬 Adaptör Yüzdesi: {row['Adapter %']}%\n"
         report += f"📏 Ortalama Okuma Uzunluğu: {row['Mean Read Length']} baz çifti\n"
         report += f"🔢 Toplam Baz Sayısı: {row['Total Bases (G)']} milyar\n"
         report += f"📊 Puan: {row['Total Score']}/100 {row['Kalite Değerlendirmesi']}\n\n"
@@ -150,7 +142,6 @@ def generate_whatsapp_report(df):
     report += "   - Ortalama Kalite Skoru: ≥ 45 olmalı\n"
     report += "   - Hata Oranı: ≤ 5 olmalı\n"
     report += "   - Guanin-Sitozin İçeriği: %40-%60 arası ideal\n"
-    report += "   - Adaptör Yüzdesi: < %10 olmalı\n"
     report += "   - Ortalama Okuma Uzunluğu:\n"
     report += "     -  Solid Tümör Paneli: 100-200 baz çifti\n"
     report += "     -  Akciğer Kanseri Paneli: 120-180 baz çifti\n"
